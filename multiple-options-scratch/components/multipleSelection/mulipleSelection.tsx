@@ -47,13 +47,17 @@ const MultipleSelection = ()=> {
       const newDays = [...selectedDays, event.target.innerText]
       setSelectedDays(newDays)
     }
+    else{
+      const newDays = selectedDays.filter((dayElem)=> dayElem != newDaySelected);
+      setSelectedDays(newDays);
+    }
   };
 
   return (
     <main className={styles.container}>
       <div className={styles.selectInput} onClick={handleOptionsToggled}>
         {selectedDays.map((selectedDay)=>(
-          <label key={selectedDay} htmlFor="day" className={styles.label} style={{backgroundColor:daysWithColors[selectedDay]}}>{selectedDay}</label>
+          <label key={selectedDay} htmlFor="day" className={styles.label} style={{backgroundColor:daysWithColors[selectedDay]}} onClick={handleClick}>{selectedDay}</label>
         ))}
       <span className={`${styles.arrow} ${isOpened ? styles.up : ''}`}></span>
       </div>
